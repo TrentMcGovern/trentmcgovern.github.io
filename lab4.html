@@ -11,7 +11,7 @@
 var name, item, count;
 now = new Date();
 hour = now.getHours();
-orderDate.setDate(now.getDate() + 7);
+var orderDate = new Date(now.getDate() + 7);
 name = window.prompt("Enter your name:","");
 item = window.prompt("Enter the item you want to choose:", "");
 count = window.prompt("Quantity of " + item + " that you want:","");
