@@ -9,7 +9,10 @@
 <script type = "text/javascript">
 
 var name, item, count;
-var now = new Date();
+now = new Date();
+arriveDate = new Date();
+day=arriveDate.getDay();
+arriveDate.setDate(day+7);
 hour = now.getHours();
 name = window.prompt("Enter your name:","");
 item = window.prompt("Enter the item you want to choose:", "");
@@ -28,7 +31,7 @@ document.writeln(name + "! Thank you for your order!</h1>")
 document.writeln("<p>Item ordered: " + item + "</p>");
 document.writeln("<p>Quantity: " +count +"</p>");
 document.writeln("<p>Ordered on " + now + "</p>");
-//document.writeln("<p>Order will arrive on " + orderDate+ "</p>");
+document.writeln("<p>Order will arrive on " + arriveDate+ "</p>");
 </script>
 
 </head>
