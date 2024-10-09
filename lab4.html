@@ -11,7 +11,7 @@
 var name, item, count;
 now = new Date();
 hour = now.getHours();
-orderDate = now;
+orderDate = now*24*60*60*1000;
 name = window.prompt("Enter your name:","");
 item = window.prompt("Enter the item you want to choose:", "");
 count = window.prompt("Quantity of " + item + " that you want:","");
@@ -28,7 +28,8 @@ if (hour < 12) {
 document.writeln(name + "! Thank you for your order!</h1>")
 document.writeln("<p>Item ordered: " + item + "</p>");
 document.writeln("<p>Quantity: " +count +"</p>");
-document.writeln("date is " + orderDate);
+document.writeln("date is " + now);
+document.writeln("Order will arrive on " + orderDate);
 </script>
 
 </head>
