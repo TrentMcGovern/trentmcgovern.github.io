@@ -1,3 +1,5 @@
+<html>
+
 <head>
     <title>Soundwave Registration</title>
     <!-- Required meta tags -->
@@ -9,8 +11,35 @@
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+
+    <script type = "text/javascript">
+        const user={
+            firstName:"John",
+            lastName:"Doe",
+            email:"johndoe@gmail.com",
+            password:"pass123#"
+
+
+        }
+
+        function submitForm(){
+            var elements = document.getElementById("myForm").elements;
+            var elemsArr1 = Array.from(elements);
+            var submission = {};
+            elemsArr1.forEach((element) => console.log(element.name + " " + element.value))
+        }
+
+
+    </script>
+
+
+
     </head>
 
+
+    <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
           
@@ -19,3 +48,18 @@
         
         </div>
       </div>
+    <form id = "myForm">
+        First name: <input type = "text" name = "fname" value = ""> <br>
+        Last Name: <input type = "text" name ="lname" value = ""> <br>
+        Email Address: <input type = "text" name = "email" value = ""> <br>
+        Password: <input type = "text" name = "pass" value = "" > <br>
+    </form>
+    <button onclick="submitForm()">Submit</button>
+    <p>Click submit to finish registration.</p>
+   
+      
+
+      </body>
+
+
+      </html>
