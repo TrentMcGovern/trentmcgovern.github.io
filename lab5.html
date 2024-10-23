@@ -15,7 +15,7 @@
 
 
     <script type = "text/javascript">
-        const user={
+        let user={
             firstName:"John",
             lastName:"Doe",
             email:"johndoe@gmail.com",
@@ -28,7 +28,10 @@
             var elements = document.getElementById("myForm").elements;
             var elemsArr1 = Array.from(elements);
             var submission = {};
-            elemsArr1.forEach((element) => console.log(element.name + " " + element.value))
+           // var user u1 =["1","2","3","4"];
+            elemsArr1.forEach((element) => console.log(element.name + " " + element.value) )
+        
+            document.getElementById("demo").innerHTML = "Thank you! Your account has been created.";
         }
 
 
@@ -54,9 +57,8 @@
         Email Address: <input type = "text" name = "email" value = ""> <br>
         Password: <input type = "text" name = "pass" value = "" > <br>
     </form>
-    <p id="demo">Click submit to finish registration</p>
     <button onclick="submitForm()">Submit</button>
-    <p>Thank you! Your account has been created.</p>
+    <p id="demo">Click submit to finish registration</p>
     
       
 
