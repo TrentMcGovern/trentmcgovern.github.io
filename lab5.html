@@ -15,22 +15,25 @@
 
 
     <script type = "text/javascript">
-       
 
         function submitForm(){
             var elements = document.getElementById("myForm").elements;
             var elemsArr1 = Array.from(elements);
             var submission = {};
-            elemsArr1.forEach((element) => console.log(element.name + " " + element.value) )
-
+            elemsArr1.forEach((element) => console.log(element.name + " " + element.value));
             const user={
-                firstName:fname,
-                lastName:lname,
-                emailAddress:email,
-                password:pass
+                firstName:elemsArr1[0].value,
+                lastName:elemsArr1[1].value,
+                emailAddress:elemsArr1[2].value,
+                password:elemsArr1[3].value,
+
+                get pass(){
+                    return this.password;
+                }
             }
-        
-            document.getElementById("demo").innerHTML = "Thank you! Your account has been created.";
+            //user.password=;
+            Object.defineProperty(user,"password",{value:"*".repeat(user.pass.length)});
+            document.getElementById("demo").innerHTML = "Thank you! Your account has been created." + user.firstName + user.lastName + user.emailAddress + user.password;
         }
 
         
@@ -60,7 +63,8 @@
     </form>
     <button onclick="submitForm()">Submit</button>
     <p id="demo">Click submit to finish registration</p>
-    
+
+  
       
 
       </body>
