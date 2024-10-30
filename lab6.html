@@ -1,0 +1,45 @@
+<html>
+    <title>Lab 6</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <script type = "text/javascript">
+
+
+    
+
+    async function consumeRestAPI(){
+    const url = 'https://brianobruno.github.io/cats.json';
+    const options = 
+        {
+         method: 'GET',
+        };
+    
+    const response = await fetch(url, options);
+    const result = await response.text();
+    const myObj = JSON.parse(result);
+    cat = myObj["catPhoto"];
+    
+    var img = document.getElementById("demo").innerHTML
+    img.src= cat;
+    
+
+     
+
+    }
+
+    </script>
+
+    </head>
+
+    <body>
+
+
+    <button onclick="consumeRestAPI()">Consume Rest API</button>
+    <image  id = "demo" src="european-shorthair-8601492_640.jpg"></p>
+    </body>
+
+
+</html>
