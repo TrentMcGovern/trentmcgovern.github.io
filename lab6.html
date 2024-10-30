@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        </style>
 
     <script type = "text/javascript">
 
@@ -20,13 +25,15 @@
     const response = await fetch(url, options);
     const result = await response.text();
     const myObj = JSON.parse(result);
-    cat = myObj["catPhoto"];
-    
-    var img = document.getElementById("demo").innerHTML
-    img.src= cat;
-    
 
-     
+    const cat = myObj["catPhoto"];
+    var img = document.getElementById("demo");
+    img.src= cat;
+
+
+
+
+
 
     }
 
@@ -37,9 +44,23 @@
     <body>
 
 
-    <button onclick="consumeRestAPI()">Consume Rest API</button>
+    
     <image  id = "demo" src="european-shorthair-8601492_640.jpg"></p>
+    <button onclick="consumeRestAPI()">Consume Rest API</button>
+
+    <table style="width:50%">
+        <tr>
+          <th>factId</th>
+          <th>fact</th>
+        </tr>
+        <tbody id="factsTable">
+        
+        </tbody>
+      </table>
+
+
     </body>
 
 
+    
 </html>
