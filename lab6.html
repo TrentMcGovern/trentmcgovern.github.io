@@ -29,7 +29,22 @@
     const cat = myObj["catPhoto"];
     var img = document.getElementById("demo");
     img.src= cat;
+    
+    const arr =  myObj["facts"];
+    arr.sort((a,b)=>a.factId-b.factId);
 
+
+     var table = document.getElementById("factsTable");
+    table.innerHTML="";
+    var tr="";
+    arr.forEach(x=>{
+     tr+='<tr>';
+     tr+='<td>'+x.factId+'</td>'+'<td>'+x.text+'</td>'
+     tr+='</tr>'
+     
+    })
+    table.innerHTML+=tr;
+  
 
 
 
