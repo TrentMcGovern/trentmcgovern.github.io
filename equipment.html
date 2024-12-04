@@ -3,7 +3,7 @@
 
      
 
-<title>Equipment Database</title>
+<title>Monster Database</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,7 +28,6 @@
             const result = await response.text();
             const myObj = JSON.parse(result);
             const arr = myObj["data"];
-           // arr.sort((a,b)=>a.id-b.id);
             
             
             var table = document.getElementById("equipmentTable");
@@ -36,13 +35,13 @@
             var tr="";
             arr.forEach(x=>{
              tr+='<tr>';
-             tr+='<td>'+(x.id-200)+'</td>'+'<td>'+x.name+'</td>'
+             tr+='<td>'+(x.id-200)+'</td><td>'+x.name+'</td>'
              tr+='</tr>'
              
             })
             table.innerHTML+=tr;
             }
-        
+
      
             </script>   
 
@@ -55,15 +54,15 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: white; /* Makes text visible on dark background */
+  font-family: 'BOTW', sans-serif;
 }
 
 table {
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent table background */
   color: white;
   border-collapse: collapse;
-  width: 50%;
-  margin: 20px auto;
-  font-family: 'BOTW';
+  width: 100%;
+
 }
 
 th, td {
@@ -73,13 +72,23 @@ th, td {
 }
 
 th {
-  background-color: rgba(255, 255, 255, 0.2); /* Light translucent for header */
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 h2 {
   text-align: center;
-  font-family: 'BOTW';
+
   margin-top: 20px;
+}
+.btn {
+            cursor: pointer;
+            border: 1px solid #3498db;
+            background-color: transparent;
+            height: 50px;
+            width: 200px;
+            color: #3498db;
+            font-size: 1.5em;
+            box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
 }
 </style>
 
@@ -99,10 +108,10 @@ h2 {
               <a class= "nav-link" href="/hyrule.html"> Home</a>
             </li>
             <li class = "nav-item">
-              <a class="nav-link active" href="/monsters.html">Monsters</a>
+              <a class="nav-link" href="/monsters.html">Monsters</a>
             </li> 
             <li class = "nav-item">
-                <a class="nav-link" href="/equipment.html">Equipment</a>
+                <a class="nav-link active" href="/equipment.html">Equipment</a>
               </li> 
         
           </ul>
@@ -111,9 +120,10 @@ h2 {
 
 
 
-      <h2>Monsters</h2>
-
-
+      <h2>Equipment</h2>
+<div class="container">
+  <div class="row">
+<div class="col-12">
     <script>createEquipmentList()</script>
         <table>
             <tr>
@@ -121,14 +131,14 @@ h2 {
               <th>Name</th>
             </tr>
             <tbody id="equipmentTable">
+              <td></td>
             
             </tbody>
           </table>
+      </div>
 
-          
-      
-
-        
+    </div>
+    </div>
 
 
 
