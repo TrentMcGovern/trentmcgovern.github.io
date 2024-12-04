@@ -1,0 +1,39 @@
+<html>
+    <head>
+
+    
+
+<title>Hyrule Database</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<style>
+    table, th, td {
+      border:1px solid black;
+    }
+    </style>
+
+<script type = "text/javascript">
+
+
+
+
+async function consumeRestAPI(){
+const url = 'https://botw-compendium.herokuapp.com/api/v3/compendium';
+const options = 
+    {
+     method: 'GET',
+    };
+
+const response = await fetch(url, options);
+const result = await response.text();
+const myObj = JSON.parse(result);
+}
+</script>   
+</head>
+
+
+<body></body>
+
+</html>
