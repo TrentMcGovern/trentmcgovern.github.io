@@ -23,8 +23,11 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: white; /* Makes text visible on dark background */
+  
 }
+
 </style>
+
 
 
 
@@ -44,7 +47,7 @@ const response = await fetch(url, options);
 const result = await response.text();
 const myObj = JSON.parse(result);
 }
-const monster = myObj["/category/monsters/data"]
+const monster = myObj["data"]
 </script>   
 </head>
 
@@ -71,13 +74,9 @@ const monster = myObj["/category/monsters/data"]
       </nav>
 
       
-      <image  id = "demo" src="logo.jpg"></p>
+      <image  src="logo.jpg"></p>
 
 
-
-      <div class="bg-image"
-     style="background-image: url('zelda.jpg'); height: 100vh;">
-</div>
 
 </body>
 
