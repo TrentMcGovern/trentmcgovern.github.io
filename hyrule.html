@@ -15,22 +15,18 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <style>
-        table {
-          font-family: arial, sans-serif;
-          border-collapse: collapse;
-          width: 100%;
-        }
-        
-        td, th {
-          border: 1px solid #dddddd;
-          text-align: left;
-          padding: 8px;
-        }
-        
-        tr:nth-child(even) {
-          background-color: #dddddd;
-        }
-        </style>
+        body {
+  margin: 0;
+  padding: 0;
+  background-image: url('zelda.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white; /* Makes text visible on dark background */
+}
+</style>
+
+
 
 <script type = "text/javascript">
 
@@ -48,14 +44,13 @@ const response = await fetch(url, options);
 const result = await response.text();
 const myObj = JSON.parse(result);
 }
-const monster = myObj["monsters"]
+const monster = myObj["/category/monsters/data"]
 </script>   
 </head>
 
 
 <body>
 
-    
 
     <nav class="navbar navbar-expand navbar-dark bg-dark">
 
