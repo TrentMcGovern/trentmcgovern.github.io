@@ -35,13 +35,16 @@
             var tr="";
             arr.forEach(x=>{
              tr+='<tr>';
-             tr+='<td>'+(x.id-200)+'</td><td>'+x.name+'</td>'
+             tr+='<td>'+(x.id-200)+'</td><td>'+x.name+'</td><td><button onclick="showMore(x)">Show More</button></td>'
              tr+='</tr>'
              
             })
             table.innerHTML+=tr;
             }
-
+        async function showMore(obj){
+          var img = document.getElementById("demo");
+          img.src= obj.image;
+        }
      
             </script>   
 
@@ -123,12 +126,13 @@ h2 {
       <h2>Equipment</h2>
 <div class="container">
   <div class="row">
-<div class="col-12">
+<div class="col-3">
     <script>createEquipmentList()</script>
         <table>
             <tr>
               <th></th>
               <th>Name</th>
+              <th>Button</th>
             </tr>
             <tbody id="equipmentTable">
               <td></td>
@@ -136,7 +140,12 @@ h2 {
             </tbody>
           </table>
       </div>
+      <div class="col-9">
+          <p><image  id = "equipmentImage" src="mastersword.jpg"></p>
+          <p id="equipmentName">Master Sword</p>
+          <p id="equipmentDescription">The legendary sword that seals the darkness. Its blade gleams with a sacred luster that can oppose the Calamity. Only a hero chosen by the sword itself can wield it.</p>
 
+      </div>
     </div>
     </div>
 
