@@ -15,54 +15,58 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
    <style> @font-face { font-family: BOTW; src: url('The Wild Breath of Zelda.otf'); } </style>
-<script type = "text/javascript">
- 
-            async function createMonsterList(){
-            const url = 'https://botw-compendium.herokuapp.com/api/v3/compendium/category/monsters';
-            const options = 
-                {
-                 method: 'GET',
-                };
-            
-            const response = await fetch(url, options);
-            const result = await response.text();
-            const myObj = JSON.parse(result);
-            const arr = myObj["data"];
-            
-            
-            var table = document.getElementById("monsterTable");
-            table.innerHTML="";
-            var tr="";
-            arr.forEach(x=>{
-             tr+='<tr>';
-             tr+='<td>'+(x.id-83)+'</td><td>'+x.name+'</td><td><button onclick="showMore('+JSON.stringify(x)+')">Show More</button></td>'
-             tr+='</tr>'
-             
-            })
-            table.innerHTML+=tr;
-            }
-        async function showMore(name, description, image){
+   <script type="text/javascript">
+    async function createMonsterList() {
+      const url = 'https://botw-compendium.herokuapp.com/api/v3/compendium/category/monsters';
+      const options = { method: 'GET' };
+  
+      const response = await fetch(url, options);
+      const result = await response.text();
+      const myObj = JSON.parse(result);
+      const arr = myObj["data"];
+  
+      var table = document.getElementById("monsterTable");
+      table.innerHTML = "";
+      var tr = "";
+  
+      arr.forEach(x => {
+       
 
-          console.log('Name:', name);
-          console.log('Description:', description);
-          console.log('Image:', image);
-          
-          var mImg = document.getElementById("monsterImage");
-          mImg.src=image;
+        const monsterDescription =x.description.replace(/'/g, "\\'");
 
-          var mName = document.getElementById("monsterName");
-          mName.innerHTML=name;
+        tr += '<tr>';
+        tr += '<td>' + (x.id - 83) + '</td>';
+        tr += '<td>' + x.name + '</td>';
+        tr += '<td><button onclick="showMore(\''+x.name+'\',\'' + monsterDescription + '\', \''+x.image+'\')">Show More</button></td>';
+        tr += '</tr>';
+      });
+  
+      table.innerHTML += tr;
+    }
+  
+    async function showMore(name, description, image) {
+      console.log('Name:', name);
+      console.log('Description:', description);
+      console.log('Image:', image);
 
-          var mDescription = document.getElementById("monsterDescription");
-          mDescription.innerHTML=description;
+      var mName = document.getElementById("monsterName");
+     mName.innerHTML = name;
 
-          
-        }
-     
-            </script>   
+      var mDescription = document.getElementById("monsterDescription");
+      mDescription.innerHTML = description;
+  
+      var mImg = document.getElementById("monsterImage");
+    mImg.src = image;
+  
 
 
-<style>  body {
+    }
+  </script>
+
+
+<style>  
+
+body {
   margin: 0;
   padding: 0;
   background-image: url('zelda.jpg');
@@ -76,36 +80,22 @@
 table {
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent table background */
   color: white;
-  border-collapse: collapse;
-  width: 100%;
-
-}
-
-th, td {
+  border-collapse: separate;
+  overflow-y:scroll;
+  height:27%;
+  display:block;
   border: 1px solid white;
   padding: 10px;
   text-align: left;
 }
 
-th {
-  background-color: rgba(255, 255, 255, 0.2);
-}
 
 h2 {
   text-align: center;
 
   margin-top: 20px;
 }
-.btn {
-            cursor: pointer;
-            border: 1px solid #3498db;
-            background-color: transparent;
-            height: 50px;
-            width: 200px;
-            color: #3498db;
-            font-size: 1.5em;
-            box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
-}
+
 </style>
 
 
@@ -139,13 +129,13 @@ h2 {
       <h2>Monsters</h2>
 <div class="container">
   <div class="row">
-<div class="col-3">
+<div class="col-lg-3">
     <script>createMonsterList()</script>
         <table>
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Button</th>
+              <th>Details</th>
             </tr>
             <tbody id="monsterTable">
               <td></td>
@@ -153,7 +143,7 @@ h2 {
             </tbody>
           </table>
       </div>
-      <div class="col-9">
+      <div class="col-lg-9">
           <p><image  id = "monsterImage" src="bokoblin.jpg"></p>
           <p id="monsterName">Bokoblin</p>
           <p id="monsterDescription">This common species is a nuisance all over Hyrule. Some have unified in the time following the Great Calamity and have formed factions of bandits. While not very clever, they are at least intelligent enough to hunt beasts and grill their meat for food. Though they're typically ferocious carnivores, they actually enjoy fruit as well.</p>
