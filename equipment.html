@@ -6,7 +6,7 @@
 <title>Equipment Database</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -15,67 +15,109 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
    <style> @font-face { font-family: BOTW; src: url('The Wild Breath of Zelda.otf'); } </style>
-<script type = "text/javascript">
- 
-            async function createEquipmentList(){
-            const url = 'https://botw-compendium.herokuapp.com/api/v3/compendium/category/equipment';
-            const options = 
-                {
-                 method: 'GET',
-                };
-            
-            const response = await fetch(url, options);
-            const result = await response.text();
-            const myObj = JSON.parse(result);
-            const arr = myObj["data"];
-            
-            
-            var table = document.getElementById("equipmentTable");
-            table.innerHTML="";
-            var tr="";
-            arr.forEach(x=>{
-             tr+='<tr>';
-             tr+='<td>'+(x.id-200)+'</td><td>'+x.name+'</td><td><button onclick="showMore(x)">Show More</button></td>'
-             tr+='</tr>'
-             
-            })
-            table.innerHTML+=tr;
-            }
-        async function showMore(obj){
-          var img = document.getElementById("demo");
-          img.src= obj.image;
-        }
+   <script type="text/javascript">
+    async function createEquipmentList() {
+      const url = 'https://botw-compendium.herokuapp.com/api/v3/compendium/category/equipment';
+      const options = { method: 'GET' };
+  
+      const response = await fetch(url, options);
+      const result = await response.text();
+      const myObj = JSON.parse(result);
+      const arr = myObj["data"];
+
+  
+      var table = document.getElementById("equipmentTable");
+      table.innerHTML = "";
+      var tr = "";
+  
+      arr.forEach(x => {
+       
      
-            </script>   
+        const equipmentDescription =x.description.replace(/'/g, "\\'").replace(/\"/g,"\\");
+        console.log(equipmentName);
+        tr += '<tr>';
+        tr += '<td>' + (x.id - 200) + '</td>';
+        tr += '<td>' + x.name + '</td>';
+        tr += '<td><button class="btn btn-light btn-sm" onclick="showMore(\''+x.name+'\',\'' + equipmentDescription + '\', \''+x.image+'\')">Show More</button></td>';
+        tr += '</tr>';
+      });
+  
+      table.innerHTML += tr;
+    }
+  
+    async function showMore(name, description, image) {
+      console.log('Name:', name);
+      console.log('Description:', description);
+      console.log('Image:', image);
+
+      var eName = document.getElementById("equipmentName");
+     eName.innerHTML = name;
+
+      var eDescription = document.getElementById("equipmentDescription");
+      eDescription.innerHTML = description;
+  
+      var eImg = document.getElementById("equipmentImage");
+    eImg.src = image;
+  }
+
+  function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("equipmentTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+        
+
+      }
+    }       
+  }
+}
+  
+  </script>
 
 
-<style>  body {
-  margin: 0;
-  padding: 0;
+<style>  
+
+body {
+
   background-image: url('zelda.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  color: white; /* Makes text visible on dark background */
+  color: white; 
   font-family: 'BOTW', sans-serif;
+  font-size:24px ;
+}
+
+#equipmentName{
+  font-size:80px;
 }
 
 table {
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent table background */
+  background-color: rgba(0, 0, 0, 0.7); 
   color: white;
-  border-collapse: collapse;
-  width: 100%;
-
-}
-
-th, td {
+  border-collapse: separate;
+  overflow-y:scroll;
+  max-height:650px;
   border: 1px solid white;
-  padding: 10px;
-  text-align: left;
+  display:block;
+  font-size:15px;
+  
 }
+
 
 th {
-  background-color: rgba(255, 255, 255, 0.2);
+  position: sticky;
+  top: 0px;  /* 0px if you don't have a navbar, but something is required */
+  background: rgb(0, 0, 0);
 }
 
 h2 {
@@ -83,16 +125,16 @@ h2 {
 
   margin-top: 20px;
 }
-.btn {
-            cursor: pointer;
-            border: 1px solid #3498db;
-            background-color: transparent;
-            height: 50px;
-            width: 200px;
-            color: #3498db;
-            font-size: 1.5em;
-            box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+
+#search {
+
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
 }
+
 </style>
 
 
@@ -111,10 +153,10 @@ h2 {
               <a class= "nav-link" href="/hyrule.html"> Home</a>
             </li>
             <li class = "nav-item">
-              <a class="nav-link" href="/monsters.html">Monsters</a>
+              <a class="nav-link active" href="/equipments.html">equipments</a>
             </li> 
             <li class = "nav-item">
-                <a class="nav-link active" href="/equipment.html">Equipment</a>
+                <a class="nav-link" href="/equipment.html">Equipment</a>
               </li> 
         
           </ul>
@@ -123,24 +165,27 @@ h2 {
 
 
 
-      <h2>Equipment</h2>
-<div class="container">
+      <h2>equipment</h2>
+
+<div class="container-fluid">
+
+
   <div class="row">
-<div class="col-3">
+<div class="col-lg-3">
     <script>createEquipmentList()</script>
-        <table>
+    <input type="text" id="search" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+        <table class="sortable">
             <tr>
-              <th></th>
+              <th>ID</th>
               <th>Name</th>
-              <th>Button</th>
+              <th>Details</th>
             </tr>
             <tbody id="equipmentTable">
-              <td></td>
-            
+            <tr id="notFound"></tr>
             </tbody>
           </table>
       </div>
-      <div class="col-9">
+      <div class="col-lg-9">
           <p><image  id = "equipmentImage" src="mastersword.jpg"></p>
           <p id="equipmentName">Master Sword</p>
           <p id="equipmentDescription">The legendary sword that seals the darkness. Its blade gleams with a sacred luster that can oppose the Calamity. Only a hero chosen by the sword itself can wield it.</p>

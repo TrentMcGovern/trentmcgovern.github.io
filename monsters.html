@@ -24,6 +24,7 @@
       const result = await response.text();
       const myObj = JSON.parse(result);
       const arr = myObj["data"];
+
   
       var table = document.getElementById("monsterTable");
       table.innerHTML = "";
@@ -45,10 +46,6 @@
     }
   
     async function showMore(name, description, image) {
-      console.log('Name:', name);
-      console.log('Description:', description);
-      console.log('Image:', image);
-
       var mName = document.getElementById("monsterName");
      mName.innerHTML = name;
 
@@ -57,10 +54,29 @@
   
       var mImg = document.getElementById("monsterImage");
     mImg.src = image;
+  }
+
+  function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("search");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("monsterTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+        
+
+      }
+    }       
+  }
+}
   
-
-
-    }
   </script>
 
 
@@ -77,25 +93,42 @@ body {
   font-size:24px ;
 }
 
+#monsterName{
+  font-size:80px;
+}
+
 table {
   background-color: rgba(0, 0, 0, 0.7); 
   color: white;
   border-collapse: separate;
   overflow-y:scroll;
-  max-width:500px;
-  max-height:600px;
-  display:block;
+  max-height:650px;
   border: 1px solid white;
-  padding: 10px;
-  text-align: left;
+  display:block;
+  font-size:15px;
   
 }
 
+
+th {
+  position: sticky;
+  top: 0px;  /* 0px if you don't have a navbar, but something is required */
+  background: rgb(0, 0, 0);
+}
 
 h2 {
   text-align: center;
 
   margin-top: 20px;
+}
+
+#search {
+
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
 }
 
 </style>
@@ -129,19 +162,22 @@ h2 {
 
 
       <h2>Monsters</h2>
+
 <div class="container-fluid">
+
+
   <div class="row">
 <div class="col-lg-3">
     <script>createMonsterList()</script>
-        <table>
+    <input type="text" id="search" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+        <table class="sortable">
             <tr>
-              <th></th>
+              <th>ID</th>
               <th>Name</th>
               <th>Details</th>
             </tr>
             <tbody id="monsterTable">
-              <td></td>
-            
+            <tr id="notFound"></tr>
             </tbody>
           </table>
       </div>
@@ -149,7 +185,7 @@ h2 {
           <p><image  id = "monsterImage" src="bokoblin.jpg"></p>
           <p id="monsterName">Bokoblin</p>
           <p id="monsterDescription">This common species is a nuisance all over Hyrule. Some have unified in the time following the Great Calamity and have formed factions of bandits. While not very clever, they are at least intelligent enough to hunt beasts and grill their meat for food. Though they're typically ferocious carnivores, they actually enjoy fruit as well.</p>
-
+            
       </div>
     </div>
     </div>
